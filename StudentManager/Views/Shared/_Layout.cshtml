@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base href="https://localhost:44363">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Tâm Anh</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Tâm Anh", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fad fa-th-large"></i>&nbsp;Danh mục &nbsp;<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu ">
+                            <li><a href="./Admin/Quanlychungchi">Chứng chỉ</a></li>
+                            <li><a href="./Admin/Khenthuongkyluat">Khen thưởng, kỷ luật</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fad fa-th-large"></i>&nbsp;Báo cáo thống kê &nbsp;<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./Admin/#">Tình hình nhân sự</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script language="javascript">
+        $(document).ready(() => {
+            const listBtnRemove = $(".delete");
+            listBtnRemove.on("click", function(e) {
+                console.log($(this).attr("href"));
+                e.preventDefault();
+                if (confirm("Bạn có muốn xóa bản ghi này không?")) {
+                    $.ajax({
+                        url: $(this).attr("href"),
+                        type: "POST"
+                    }).done(() => {
+                        $(this).parent().parent().remove();
+                        console.log("Remove done");
+                    })
+                }
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<StudentManager.Areas.Admin.Models.Khenthuongkyluat>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading"><strong>Khen thưởng kỷ luật</strong></div>
+    <div class="panel-body">
+        <p class="text-right">
+            <a href="@Url.Action("Create", "Khenthuongkyluat")" class="btn btn-sm btn-success"> Thêm mới <i class="glyphicon glyphicon-plus"></i></a>
+        </p>
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <tr>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.sTieude)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.dThoigianlap)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.dThoigianduyet)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.iKinhphi)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.sGhichu)
+                </th>
+                <th class="text-center">
+                    Tác vụ
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sTieude)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.dThoigianlap)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.dThoigianduyet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.iKinhphi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sGhichu)
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", "Khenthuongkyluat", new { id = item.ID })" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a href="@Url.Action("Delete", "Khenthuongkyluat", new { id = item.ID })" class="btn btn-sm btn-danger delete"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
